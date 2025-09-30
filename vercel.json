@@ -3,7 +3,7 @@
     {
       "src": "bhawana/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      "config": { "maxLambdaSize": "50mb", "runtime": "python3.9" }
     },
     {
       "src": "build.sh",
@@ -14,13 +14,7 @@
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "bhawana/wsgi.py"
-    }
+    { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
+    { "src": "/(.*)", "dest": "bhawana/wsgi.py" }
   ]
 }
