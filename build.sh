@@ -1,12 +1,16 @@
-#!/bin/bash
-set -e
 
-# Install dependencies using the environment's Python
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+set -e  
 
-# Run migrations
-python manage.py migrate
 
-# Collect static files
-python manage.py collectstatic --noinput
+PY=python3
+if ! command -v $PY >/dev/null 2>&1; then
+  PY=python3.12
+fi
+
+
+$PY -m pip install --upgrade pip
+$PY -m pip install -r requirements.txt
+
+
+$PY manage.py migrate --noinput
+$PY manage.py collectstatic --noinput
